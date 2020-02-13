@@ -3,7 +3,6 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
@@ -46,7 +45,6 @@ app.use(require('node-sass-middleware')({
 
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -70,9 +68,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:5000'] // <== this will be the URL of our React app (it will be running on port 3000)
+    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
   })
 );
+
+// app.use(cors())
 
 // ROUTES MIDDLEWARE STARTS HERE:
 

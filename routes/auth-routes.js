@@ -6,11 +6,21 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/user-model');
 
+
 authRoutes.post('/signup', (req, res, next) => {
   const username = req.body.username;
-  console.log(username)
   const password = req.body.password;
-  console.log(password)
+  const fullName = req.body.fullName;
+  const street = req.body.street;
+  const number = req.body.number;
+  const complement = req.body.complement;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zipcode = req.body.zipcode;
+  const phoneNumber = req.body.phoneNumber;
+  const cpf = req.body.cpf;
+
+  
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide email and password' });
@@ -38,7 +48,18 @@ authRoutes.post('/signup', (req, res, next) => {
 
     const aNewUser = new User({
       username: username,
-      password: hashPass
+      password: hashPass,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
+      cpf: cpf,
+      address: {
+        street: street,
+        number: number,
+        complement: complement,
+        city: city,
+        state: state,
+        zipcode: zipcode
+      }
     });
 
     aNewUser.save(err => {
