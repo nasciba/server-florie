@@ -11,7 +11,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 
-require('./configs/passport');
+require('./configs/passport.js');
 
 
 mongoose
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ADD SESSION SETTINGS HERE:
 app.use(session({
-  secret: "some secret goes here",
+  secret: "a certain secret",
   resave: true,
   saveUninitialized: true
 }));

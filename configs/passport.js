@@ -1,6 +1,6 @@
 const User          = require('../models/user-model');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt        = require('bcryptjs'); // !!!
+const bcrypt        = require('bcryptjs'); 
 const passport      = require('passport');
 
 passport.serializeUser((loggedInUser, cb) => {
@@ -17,8 +17,9 @@ passport.deserializeUser((userIdFromSession, cb) => {
   });
 });
 
-passport.use(new LocalStrategy((email, password, next) => {
-  User.findOne({ email }, (err, foundUser) => {
+passport.use(new LocalStrategy((username, password, next) => {
+   console.log(username, password);
+  User.findOne({ username }, (err, foundUser) => {
     if (err) {
       next(err);
       return;
