@@ -77,8 +77,9 @@ app.use(
 // ROUTES MIDDLEWARE STARTS HERE:
 
 const index = require('./routes/index');
+const productsRoutes = require('./routes/products-routes');
 app.use('/', index);
-app.use('/api', require('./routes/auth-routes.js'));
+app.use('/api', productsRoutes);
 
 //AUTH routes
 const authRoutes = require('./routes/auth-routes');
