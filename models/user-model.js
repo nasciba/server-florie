@@ -7,6 +7,7 @@ const userSchema = new Schema({
   fullName: String,
   cpf: Number,
   phoneNumber: Number,
+  admin: Boolean,
   address: { street: String, number: Number, complement: String, city: String, state: String, zipcode: Number},
   // order: {
   //   type: Schema.Types.ObjectId,

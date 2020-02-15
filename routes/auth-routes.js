@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user-model');
 
 
+
 authRoutes.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -19,6 +20,7 @@ authRoutes.post('/signup', (req, res, next) => {
   const zipcode = req.body.zipcode;
   const phoneNumber = req.body.phoneNumber;
   const cpf = req.body.cpf;
+  const admin = req.body.admin;
 
   
 
@@ -52,6 +54,7 @@ authRoutes.post('/signup', (req, res, next) => {
       fullName: fullName,
       phoneNumber: phoneNumber,
       cpf: cpf,
+      admin : admin,
       address: {
         street: street,
         number: number,
