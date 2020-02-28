@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Product = require('../models/product-model');
+const uploader = require('../configs/cloudinary-setup');
 
-// GET route => all products
 router.get('/products', (req, res, next) => {
   Product.find()
     .then(allTheProducts => {
@@ -15,38 +15,38 @@ router.get('/products', (req, res, next) => {
     });
 });
 
-// POST route => to create a new product
 router.post('/products', (req, res, next) => {
-  console.log(req.body);
-  const { name, image, price, brand, category, type, stock, description, size } = req.body;
+  console.log("teste rota products:", req.body);
+  const { name, price, brand, category, type, stock, description, imageUrl, size } = req.body;
   Product.create({
     name,
-    image,
     price,
     brand,
     category,
     type,
     stock,
     description,
-    size
+    size,
+    imageUrl
   })
     .then(response => {
       res.json(response);
+
+
     })
     .catch(err => {
+
       res.json(err);
+
     });
 });
 
-// GET route => to get a specific product/detailed view
 router.get('/products/:id', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
 
-  // Our product have array of tasks' ids and
-  // we can use .populate() method to get the whole task objects
   Product.findById(req.params.id)
     .then(product => {
       res.status(200).json(product);
@@ -56,7 +56,6 @@ router.get('/products/:id', (req, res, next) => {
     });
 });
 
-// PUT route => to update a specific product
 router.put('/products/:id', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
@@ -72,7 +71,6 @@ router.put('/products/:id', (req, res, next) => {
     });
 });
 
-// DELETE route => to delete a specific product
 router.delete('/products/:id', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
