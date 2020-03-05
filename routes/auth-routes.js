@@ -113,6 +113,22 @@ authRoutes.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+authRoutes.put('/user/:id', (req, res, next) => {
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.json({ message: ` ${req.params.id} is updated successfully.` });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 authRoutes.post('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Log out success!' });
