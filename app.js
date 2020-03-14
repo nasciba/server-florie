@@ -29,13 +29,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// Express View engine setup
 
 app.use(require('node-sass-middleware')({
   src: path.join(__dirname, 'public'),
@@ -47,40 +44,34 @@ app.use(require('node-sass-middleware')({
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// ADD SESSION SETTINGS HERE:
 app.use(session({
   secret: "a certain secret",
   resave: true,
   saveUninitialized: true
 }));
 
-// USE passport.initialize() and passport.session() HERE:
 app.use(passport.initialize());
 app.use(passport.session());
 
-// default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
-
-// ADD CORS SETTINGS HERE TO ALLOW CROSS-ORIGIN INTERACTION:
 
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+    origin: ['http://localhost:3000'] 
   })
 );
 
 // app.use(cors())
 
-// ROUTES MIDDLEWARE STARTS HERE:
 
 const index = require('./routes/index');
+const productsRoutes = require('./routes/products-routes');
+const fileUploadRoutes = require('./routes/file-routes');
 app.use('/', index);
-app.use('/api', require('./routes/auth-routes.js'));
+app.use('/api', productsRoutes);
+app.use('/api', fileUploadRoutes);
 
-//AUTH routes
 const authRoutes = require('./routes/auth-routes');
 app.use('/api', authRoutes);
 
