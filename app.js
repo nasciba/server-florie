@@ -68,7 +68,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 // );
 app.use(
   cors({
-    origin: ['177.92.67.153'],
+    origin: false,
     credentials: true,
   })
 );
