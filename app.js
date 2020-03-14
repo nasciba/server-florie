@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const port = process.env.PORT;
+
 
 const session = require('express-session');
 const passport = require('passport');
@@ -15,7 +17,7 @@ require('./configs/passport.js');
 
 
 mongoose
-  .connect('mongodb://localhost/server-florie', { useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! `)
   })
