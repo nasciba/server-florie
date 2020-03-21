@@ -68,7 +68,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 // );
 app.use(
   cors({
-    origin: false,
+    origin: ['http://localhost:3000'],
     credentials: true,
   })
 );
@@ -78,9 +78,11 @@ app.use(
 const index = require('./routes/index');
 const productsRoutes = require('./routes/products-routes');
 const fileUploadRoutes = require('./routes/file-routes');
+const orderRoutes = require('./routes/order-routes')
 app.use('/', index);
 app.use('/api', productsRoutes);
 app.use('/api', fileUploadRoutes);
+app.use('/api', orderRoutes);
 
 const authRoutes = require('./routes/auth-routes');
 app.use('/api', authRoutes);
