@@ -52,7 +52,7 @@ authRoutes.post('/signup', (req, res, next) => {
     const aNewUser = new User({
       username: username,
       password: hashPass,
-      firstName: firsName,
+      firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
       cpf: cpf,
