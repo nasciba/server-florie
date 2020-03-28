@@ -1,6 +1,6 @@
 const express = require('express');
 const authRoutes = express.Router();
-
+const mongoose = require('mongoose')
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
@@ -11,7 +11,8 @@ const User = require('../models/user-model');
 authRoutes.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const fullName = req.body.fullName;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const street = req.body.street;
   const number = req.body.number;
   const complement = req.body.complement;
@@ -51,7 +52,8 @@ authRoutes.post('/signup', (req, res, next) => {
     const aNewUser = new User({
       username: username,
       password: hashPass,
-      fullName: fullName,
+      firstName: firsName,
+      lastName: lastName,
       phoneNumber: phoneNumber,
       cpf: cpf,
       admin : admin,
