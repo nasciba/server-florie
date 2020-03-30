@@ -74,7 +74,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 // );
 app.use(
   cors({
-    origin: [`${process.env.REACT_APP_FRONT}`],
+    origin: [process.env.REACT_APP_FRONT],
     credentials: true,
   })
 );
