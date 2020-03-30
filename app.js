@@ -60,24 +60,19 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-// app.use(
-//   cors({
-//     origin: ['https://florie.herokuapp.com'],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: ['https://florie.herokuapp.com'],
+    credentials: true,
+  })
+);
 // app.use(
 //   cors({
 //     origin: ['http://localhost:3000'],
 //     credentials: true,
 //   })
 // );
-app.use(
-  cors({
-    origin: ['process.env.REACT_APP_FRONT'],
-    credentials: true,
-  })
-);
+
 
 
 
