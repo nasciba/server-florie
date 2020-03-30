@@ -66,9 +66,15 @@ app.locals.title = 'Express - Generated with IronGenerator';
 //     credentials: true,
 //   })
 // );
+// app.use(
+//   cors({
+//     origin: ['http://localhost:3000'],
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: process.env.REACT_APP_FRONT,
     credentials: true,
   })
 );
