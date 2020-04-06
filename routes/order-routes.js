@@ -4,10 +4,12 @@ const Order = require('../models/order-model');
 const User =
 
 router.post('/order', (req, res, next) => {
-    const { products, totalPrice } = req.body
+    const { products, totalPrice, typeOfDelivery, priceWithDelivery } = req.body
     Order.create({
         products,
         totalPrice,
+        typeOfDelivery,
+        priceWithDelivery,
         client: req.user._id, 
          timestamps: true 
 

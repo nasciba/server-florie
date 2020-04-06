@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     products: Array,
     totalPrice: Number,
+    typeOfDelivery: String,
+    priceWithDelivery: Number,
     created: {
         type: Date,
         default: Date.now
