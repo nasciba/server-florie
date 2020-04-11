@@ -16,6 +16,7 @@ authRoutes.post('/signup', (req, res, next) => {
   const street = req.body.street;
   const number = req.body.number;
   const complement = req.body.complement;
+  const district = req.body.district;
   const city = req.body.city;
   const state = req.body.state;
   const zipcode = req.body.zipcode;
@@ -61,6 +62,7 @@ authRoutes.post('/signup', (req, res, next) => {
         street: street,
         number: number,
         complement: complement,
+        district: district,
         city: city,
         state: state,
         zipcode: zipcode

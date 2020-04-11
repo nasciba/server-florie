@@ -9,7 +9,7 @@ const userSchema = new Schema({
   cpf: Number,
   phoneNumber: Number,
   admin: { type: Boolean, default: false },
-  address: { street: String, number: Number, complement: String, city: String, state: String, zipcode: Number},
+  address: { street: String, number: Number, complement: String, district: String, city: String, state: String, zipcode: Number},
   order: {
     type: Schema.Types.ObjectId,
     ref: 'Order'
