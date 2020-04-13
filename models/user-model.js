@@ -10,10 +10,10 @@ const userSchema = new Schema({
   phoneNumber: Number,
   admin: { type: Boolean, default: false },
   address: { street: String, number: Number, complement: String, district: String, city: String, state: String, zipcode: Number},
-  order: {
+  orders: [{
     type: Schema.Types.ObjectId,
     ref: 'Order'
-  },
+  }],
 
 });
 

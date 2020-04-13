@@ -23,6 +23,7 @@ authRoutes.post('/signup', (req, res, next) => {
   const phoneNumber = req.body.phoneNumber;
   const cpf = req.body.cpf;
   const admin = req.body.admin;
+  const orders = [];
 
   
 
@@ -66,7 +67,8 @@ authRoutes.post('/signup', (req, res, next) => {
         city: city,
         state: state,
         zipcode: zipcode
-      }
+      },
+      orders: orders
     });
 
     aNewUser.save(err => {
