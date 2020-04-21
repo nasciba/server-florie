@@ -3,6 +3,18 @@ const router = express.Router();
 const mongoose = require('mongoose')
 const Order = require('../models/order-model');
 
+router.get('/my-orders/:id', (req, res, next) => {
+  const clientId = req.params.id;
+  Order.find({ client: clientId})
+    .then(myOrders => {
+      console.log(myOrders);
+      res.json(myOrders);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
 router.get('/orders', (req, res, next) => {
     Order.find()
       .then(allOrders => {
