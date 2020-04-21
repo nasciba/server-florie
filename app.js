@@ -58,8 +58,6 @@ app.use(passport.session());
 
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
 app.use(
   cors({
     origin: ['http://florie.herokuapp.com'],

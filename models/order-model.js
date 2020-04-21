@@ -13,7 +13,7 @@ const orderSchema = new Schema({
     client: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
+    }
 })
 
 const Order = mongoose.model('Order', orderSchema)
