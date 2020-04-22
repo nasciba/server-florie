@@ -60,16 +60,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use(
   cors({
-    origin: ['http://florie.herokuapp.com'],
+    origin: process.env.REACT_APP_FRONT,  
     credentials: true,
   })
 );
-// app.use(
-//   cors({
-//     origin: ['http://localhost:3000'],
-//     credentials: true,
-//   })
-// );
 
 const index = require('./routes/index');
 const productsRoutes = require('./routes/products-routes');
