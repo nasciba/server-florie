@@ -7,7 +7,6 @@ const uploader = require('../configs/cloudinary-setup');
 router.get('/products', (req, res, next) => {
   Product.find()
     .then(allTheProducts => {
-      console.log(allTheProducts);
       res.json(allTheProducts);
     })
     .catch(err => {
@@ -16,7 +15,6 @@ router.get('/products', (req, res, next) => {
 });
 
 router.post('/products', (req, res, next) => {
-  console.log("teste rota products:", req.body);
   const { name, price, brand, category, type, stock, description, imageUrl, size } = req.body;
   Product.create({
     name,
@@ -41,9 +39,6 @@ router.post('/products', (req, res, next) => {
     });
 });
 
-router.get('/cart', (req, res, next) => {
-  console.log("teste rota carrinho:", req.body)
-})
 
 router.get('/products/:id', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {

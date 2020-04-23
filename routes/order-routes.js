@@ -7,7 +7,6 @@ router.get('/my-orders/:id', (req, res, next) => {
   const clientId = req.params.id;
   Order.find({ client: clientId})
     .then(myOrders => {
-      console.log(myOrders);
       res.json(myOrders);
     })
     .catch(err => {
@@ -18,7 +17,6 @@ router.get('/my-orders/:id', (req, res, next) => {
 router.get('/orders', (req, res, next) => {
     Order.find()
       .then(allOrders => {
-        console.log(allOrders);
         res.json(allOrders);
       })
       .catch(err => {
