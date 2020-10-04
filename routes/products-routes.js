@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Product = require('../models/product-model');
-const uploader = require('../configs/cloudinary-setup');
 
 router.get('/products', (req, res, next) => {
   Product.find()
@@ -29,13 +28,9 @@ router.post('/products', (req, res, next) => {
   })
     .then(response => {
       res.json(response);
-
-
     })
     .catch(err => {
-
       res.json(err);
-
     });
 });
 

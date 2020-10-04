@@ -1,9 +1,8 @@
 const express = require('express');
 const router  = express.Router();
+const parser = require('../configs/cloudinary-setup');
 
-const uploader = require('../configs/cloudinary-setup');
-
-router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
+router.post('/upload', parser.single("imageUrl"), (req, res) => {
     console.log('file is: ', req.file)
 
     if (!req.file) {
@@ -12,6 +11,7 @@ router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
     }
     
     res.json({ secure_url: req.file.secure_url });
+    console.log(res.json)
 })
 
 module.exports = router;
