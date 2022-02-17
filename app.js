@@ -13,23 +13,19 @@ const passport = require("passport");
 require("./configs/passport.js");
 
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  .then((x) => {
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },)
+  .then(() => {
     console.log(`Connected to Mongo! `);
   })
   .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
-const app_name = require("./package.json").name;
-const debug = require("debug")(
-  `${app_name}:${path.basename(__filename).split(".")[0]}`
-);
 
 const app = express();
 
-/* app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); */
+ app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(cookieParser());
 
 app.use(

@@ -1,12 +1,11 @@
 const express = require('express');
+const router  = express.Router();
 const authRoutes = express.Router();
 const mongoose = require('mongoose')
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 const User = require('../models/user-model');
-
-
 
 authRoutes.post('/signup', (req, res, next) => {
   const username = req.body.username;
@@ -25,15 +24,13 @@ authRoutes.post('/signup', (req, res, next) => {
   const admin = req.body.admin;
   const orders = [];
 
-  
-
-  if (!username || !password) {
+   if (!username || !password) {
     res.status(400).json({ message: 'Provide email and password' });
     return;
   }
 
   if (password.length < 7) {
-    res.status(400).json({ message: 'Please make your password at least 8 characters long for security purposes.' });
+    res.status(400).json({ message: 'Please make your password at least 7 characters long for security purposes.' });
     return;
   }
 
@@ -96,13 +93,14 @@ authRoutes.post('/signup', (req, res, next) => {
 
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
-    
+    console.l
     if (err) {
       res.status(500).json({ message: 'Something went wrong authenticating user' });
       return;
     }
 
     if (!theUser) {
+      console.log("aqui theuser")
       res.status(401).json(failureDetails);
       return;
     }
@@ -114,7 +112,6 @@ authRoutes.post('/login', (req, res, next) => {
       }
 
       res.status(200).json(theUser);
-      
     });
   })(req, res, next);
 });
